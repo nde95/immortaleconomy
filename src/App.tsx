@@ -1,9 +1,12 @@
 import "./App.css";
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
-      <div className="text-xl text-sky-400">Hello World</div>
+      <div className="h-full w-full">
+        <Home />
+      </div>
     </>
   );
 }
