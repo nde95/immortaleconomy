@@ -1,9 +1,3 @@
-interface heroDataProps {
-  name: string;
-  image: string;
-  heroId: string;
-}
-
 export const heroData = {
   Abaddon: {
     name: "Abaddon",
@@ -22,7 +16,7 @@ export const heroData = {
   },
   AntiMage: {
     name: "Anti Mage",
-    image: '"/HeroIcons/antimage.png",',
+    image: "/HeroIcons/antimage.png",
     heroId: "antimage",
   },
   ArcWarden: {
@@ -42,7 +36,7 @@ export const heroData = {
   },
   BatRider: {
     name: "Bat Rider",
-    image: '"/HeroIcons/batrider.png",',
+    image: "/HeroIcons/batrider.png",
     heroId: "batrider",
   },
   Beastmaster: {
