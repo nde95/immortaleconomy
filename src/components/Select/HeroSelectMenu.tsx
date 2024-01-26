@@ -22,7 +22,13 @@ const customStyles = {
     ...base,
     height: 50,
     minHeight: 50,
-    width: 250,
+    width: 200,
+    maxWidth: 250,
+    whiteSpace: "nowrap",
+    textOverflow: "hidden",
+    "@media (max-width: 768px)": {
+      maxWidth: 100,
+    },
   }),
 };
 
@@ -40,6 +46,7 @@ const HeroSelectMenu = ({ onSelectHero }: HeroSelectMenuProps) => {
       options={options}
       styles={customStyles}
       onChange={handleChange}
+      isSearchable={false}
     />
   );
 };

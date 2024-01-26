@@ -25,8 +25,15 @@ const colourStyles: StylesConfig<any, true> = {
     backgroundColor: "white",
     height: 50,
     minHeight: 50,
-    width: 250,
-    fontFamily: "'Sora', sans-serif",
+    width: 200,
+    maxWidth: 250,
+    whiteSpace: "nowrap",
+    textOverflow: "hidden",
+    fontFamily: "Sora",
+
+    "@media (max-width: 768px)": {
+      maxWidth: 100,
+    },
   }),
   option: (styles, { data }) => ({
     ...styles,
@@ -59,6 +66,7 @@ const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
         options={options}
         styles={colourStyles}
         onChange={handleChange}
+        isSearchable={false}
       />
     </div>
   );
