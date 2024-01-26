@@ -1,5 +1,8 @@
-import chroma from "chroma-js";
-import Select, { StylesConfig } from "react-select";
+import Select, { ActionMeta, StylesConfig } from "react-select";
+
+interface RaritySelectMenuProps {
+  onSelectRarity: (id: string) => void;
+}
 
 const dot = (color = "transparent") => ({
   alignItems: "center",
@@ -17,17 +20,24 @@ const dot = (color = "transparent") => ({
 });
 
 const colourStyles: StylesConfig<any, true> = {
-  control: styles => ({ ...styles, backgroundColor: "white" }),
+  control: styles => ({
+    ...styles,
+    backgroundColor: "white",
+    height: 50,
+    minHeight: 50,
+    width: 250,
+    fontFamily: "'Sora', sans-serif",
+  }),
   option: (styles, { data }) => ({
     ...styles,
-    padding: "8px", // Adjust padding to accommodate the dot
+    padding: "8px",
     ...dot(data.color),
   }),
   input: styles => ({ ...styles }),
   placeholder: styles => ({ ...styles }),
   singleValue: (styles, { data }) => ({
     ...styles,
-    ...dot(data.color), // Render the dot for the selected value
+    ...dot(data.color),
   }),
 };
 
@@ -36,13 +46,19 @@ const options = [
   { value: "Arcana", label: "Arcana", color: "green" },
 ];
 
-const RaritySelectMenu = () => {
+const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
+  const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
+    const selectedOption = newValue as { value: string };
+    onSelectRarity(selectedOption.value);
+  };
+
   return (
     <div className="cursor-pointer">
       <Select
         placeholder="Please Select A Rarity"
         options={options}
         styles={colourStyles}
+        onChange={handleChange}
       />
     </div>
   );
