@@ -1,3 +1,6 @@
+import { FaSteam } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+
 interface Item {
   icon_url: string;
   name: string;
@@ -10,6 +13,13 @@ interface ItemsMapProps {
 }
 
 const ItemsMap: React.FC<ItemsMapProps> = ({ items }) => {
+  const handleItemClick = (itemName: string) => {
+    const encodedName = itemName.replace(/\s+/g, "%20");
+    const url = `https://steamcommunity.com/market/listings/570/${encodedName}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="mt-2 container mx-3">
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -28,6 +38,11 @@ const ItemsMap: React.FC<ItemsMapProps> = ({ items }) => {
               <div>Current listings: {item.sell_listings}</div>
               <div>{item.sell_price_text}</div>
             </div>
+            <button
+              onClick={() => handleItemClick(item.name)}
+              className="bg-green-500 gap-1 hover:bg-green-700 text-white font-bold py-2 px-4 border border-black rounded flex">
+              <FaSteam /> <FaArrowRight />
+            </button>
           </div>
         ))}
       </div>
