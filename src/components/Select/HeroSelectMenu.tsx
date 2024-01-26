@@ -41,13 +41,15 @@ const HeroSelectMenu = ({ onSelectHero }: HeroSelectMenuProps) => {
   };
 
   return (
-    <Select
-      placeholder="Please Select A Hero"
-      options={options}
-      styles={customStyles}
-      onChange={handleChange}
-      isSearchable={false}
-    />
+    <div className="font-Sora text-sm">
+      <Select
+        placeholder="Please Select A Hero"
+        options={options}
+        styles={customStyles}
+        onChange={handleChange}
+        isSearchable={false}
+      />
+    </div>
   );
 };
 

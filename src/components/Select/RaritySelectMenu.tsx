@@ -29,7 +29,6 @@ const colourStyles: StylesConfig<any, true> = {
     maxWidth: 250,
     whiteSpace: "nowrap",
     textOverflow: "hidden",
-    fontFamily: "Sora",
 
     "@media (max-width: 768px)": {
       maxWidth: 100,
@@ -60,7 +59,7 @@ const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
   };
 
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer font-Sora text-sm">
       <Select
         placeholder="Please Select A Rarity"
         options={options}
