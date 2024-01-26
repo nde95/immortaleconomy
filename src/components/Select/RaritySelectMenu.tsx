@@ -2,6 +2,7 @@ import Select, { ActionMeta, StylesConfig } from "react-select";
 
 interface RaritySelectMenuProps {
   onSelectRarity: (id: string) => void;
+  isLoading: boolean;
 }
 
 const dot = (color = "transparent") => ({
@@ -52,7 +53,10 @@ const options = [
   { value: "Arcana", label: "Arcana", color: "green" },
 ];
 
-const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
+const RaritySelectMenu = ({
+  onSelectRarity,
+  isLoading,
+}: RaritySelectMenuProps) => {
   const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
     const selectedOption = newValue as { value: string };
     onSelectRarity(selectedOption.value);
@@ -67,6 +71,7 @@ const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
         styles={colourStyles}
         onChange={handleChange}
         isSearchable={false}
+        isDisabled={isLoading}
       />
     </div>
   );

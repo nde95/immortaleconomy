@@ -3,6 +3,7 @@ import { heroData } from "../../assets/herodata";
 
 interface HeroSelectMenuProps {
   onSelectHero: (heroId: string) => void;
+  isLoading: boolean;
 }
 
 const options = Object.entries(heroData).map(([heroKey, heroValue], index) => {
@@ -32,7 +33,7 @@ const customStyles = {
   }),
 };
 
-const HeroSelectMenu = ({ onSelectHero }: HeroSelectMenuProps) => {
+const HeroSelectMenu = ({ onSelectHero, isLoading }: HeroSelectMenuProps) => {
   // const [isClearable, setIsClearable] = useState(true);
 
   const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
@@ -49,6 +50,7 @@ const HeroSelectMenu = ({ onSelectHero }: HeroSelectMenuProps) => {
         styles={customStyles}
         onChange={handleChange}
         isSearchable={false}
+        isDisabled={isLoading}
       />
     </div>
   );
