@@ -6,3 +6,13 @@ Steam's market interface crashes on me almost every time I click a button so, af
 
 [Try it here!](https://immortal-economy.vercel.app/)
 ![image link](https://i.imgur.com/qsfuzq6.png)
+
+## Technologies Used
+
+- React
+- Python
+- Tailwind CSS
+- React Select
+- React Icons
+- React Spinners
+- Python Anywhere for hosting API
