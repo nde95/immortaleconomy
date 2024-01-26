@@ -1,19 +1,46 @@
 import { useState } from "react";
 import { EmptyState, HomeState } from "./EmptyStates";
 import { HeroSelectMenu, RaritySelectMenu } from "./Select";
+import ItemsMap from "./ItemsMap";
+import { useItemContext } from "../context/ItemContext";
 
 const Home = () => {
   const [selectedHeroId, setSelectedHeroId] = useState<string | null>(null);
   const [selectedRarityId, setSelectedRarityId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = () => {
+  const { items, setItems } = useItemContext();
+
+  const handleClick = async () => {
     console.log("Selected Hero ID:", selectedHeroId);
     console.log("Selected Rarity ID:", selectedRarityId);
-    // Perform actions with the selected hero ID
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          selectedHeroId,
+          selectedRarityId,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response from server:", data);
+        setItems(data);
+      } else {
+        console.error("Error fetching items", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error sending request to server:", error);
+    }
   };
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className="container mx-auto h-full w-full flex flex-col">
       <div className="bg-slate-100 flex justify-center items-center flex-grow">
         <HomeState />
       </div>
@@ -27,9 +54,9 @@ const Home = () => {
           <button onClick={handleClick}>Search</button>
         </div>
       </div>
-      {/* Section for empty state */}
+      {/* Conditionally render EmptyState or ItemsMap based on the population of items */}
       <div className="flex-grow flex justify-center items-center bg-slate-100">
-        <EmptyState />
+        {items.length === 0 ? <EmptyState /> : <ItemsMap items={items} />}
       </div>
     </div>
   );
