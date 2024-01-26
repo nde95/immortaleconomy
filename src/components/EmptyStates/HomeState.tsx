@@ -3,7 +3,7 @@ const HomeState = () => {
     <div className="flex flex-col text-center justify-center items-center">
       <img
         className="fixed top-0"
-        src="/public/logo.png"
+        src="/logo.png"
         alt="logo"
         height="350px"
         width="250px"
