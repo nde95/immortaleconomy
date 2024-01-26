@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EmptyState, HomeState } from "./EmptyStates";
 import { HeroSelectMenu, RaritySelectMenu } from "./Select";
 import ItemsMap from "./ItemsMap";
@@ -9,8 +9,17 @@ const Home = () => {
   const [selectedHeroId, setSelectedHeroId] = useState<string | null>(null);
   const [selectedRarityId, setSelectedRarityId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const { items, setItems } = useItemContext();
+
+  useEffect(() => {
+    if (selectedHeroId !== null && selectedRarityId !== null) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [selectedHeroId, selectedRarityId]);
 
   const handleClick = async () => {
     console.log("Selected Hero ID:", selectedHeroId);
@@ -62,8 +71,13 @@ const Home = () => {
           isLoading={isLoading}
           onSelectRarity={rarityId => setSelectedRarityId(rarityId)}
         />
-        <div className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded flex ">
-          <button disabled={isLoading} onClick={handleClick}>
+        <div
+          className={`${
+            isDisabled || isLoading
+              ? "bg-gray-400 hover:bg-gray-600  text-white font-bold py-2 px-4 border border-black rounded flex"
+              : "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-black rounded flex"
+          }`}>
+          <button disabled={isLoading || isDisabled} onClick={handleClick}>
             Search
           </button>
         </div>
