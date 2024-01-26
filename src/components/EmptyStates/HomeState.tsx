@@ -1,13 +1,15 @@
 const HomeState = () => {
   return (
     <div className="flex flex-col text-center justify-center items-center">
-      <img
-        className="fixed top-0"
-        src="/logo.png"
-        alt="logo"
-        height="350px"
-        width="250px"
-      />
+      <div className="hidden lg:flex lg:justify-center lg:items-center">
+        <img
+          className="fixed top-0"
+          src="/logo.png"
+          alt="logo"
+          height="350px"
+          width="250px"
+        />
+      </div>
       <div>
         <div className="mx-auto">
           <h2 className="font-Bebas text-5xl mb-5">
