@@ -57,7 +57,10 @@ const RaritySelectMenu = ({
   onSelectRarity,
   isLoading,
 }: RaritySelectMenuProps) => {
-  const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
+  const handleChange = (
+    newValue: unknown,
+    _actionMeta: ActionMeta<unknown>
+  ) => {
     const selectedOption = newValue as { value: string };
     onSelectRarity(selectedOption.value);
   };

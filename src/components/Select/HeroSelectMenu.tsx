@@ -9,8 +9,9 @@ interface HeroSelectMenuProps {
 const options = Object.entries(heroData).map(([heroKey, heroValue], index) => {
   return {
     value: heroValue.heroId,
+    key: heroKey,
     label: (
-      <div className="flex items-center gap-1 font-Sora">
+      <div key={index} className="flex items-center gap-1 font-Sora">
         <img src={heroValue.image} height="30px" width="30px" />
         {heroValue.name}
       </div>
@@ -34,9 +35,10 @@ const customStyles = {
 };
 
 const HeroSelectMenu = ({ onSelectHero, isLoading }: HeroSelectMenuProps) => {
-  // const [isClearable, setIsClearable] = useState(true);
-
-  const handleChange = (newValue: unknown, actionMeta: ActionMeta<unknown>) => {
+  const handleChange = (
+    newValue: unknown,
+    _actionMeta: ActionMeta<unknown>
+  ) => {
     const selectedOption = newValue as { value: string };
     onSelectHero(selectedOption.value);
   };
