@@ -1,17 +1,19 @@
-import { itemData } from "../assets/itemdata";
-
-interface ItemsMapProps {
+interface Item {
   icon_url: string;
   name: string;
   sell_listings: number;
   sell_price_text: string;
 }
 
-const ItemsMap: React.FC<ItemsMapProps> = () => {
+interface ItemsMapProps {
+  items: Item[];
+}
+
+const ItemsMap: React.FC<ItemsMapProps> = ({ items }) => {
   return (
     <div className="mt-2 container mx-3">
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {itemData.map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className="px-3 py-2 bg-slate-400 border border-black">
