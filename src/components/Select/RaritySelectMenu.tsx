@@ -62,6 +62,7 @@ const RaritySelectMenu = ({ onSelectRarity }: RaritySelectMenuProps) => {
     <div className="cursor-pointer font-Sora text-sm">
       <Select
         placeholder="Please Select A Rarity"
+        required
         options={options}
         styles={colourStyles}
         onChange={handleChange}

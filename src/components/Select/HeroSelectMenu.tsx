@@ -44,6 +44,7 @@ const HeroSelectMenu = ({ onSelectHero }: HeroSelectMenuProps) => {
     <div className="font-Sora text-sm">
       <Select
         placeholder="Please Select A Hero"
+        required
         options={options}
         styles={customStyles}
         onChange={handleChange}
